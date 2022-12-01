@@ -1,0 +1,83 @@
+body {
+    font-family: sans-serif;
+  }  
+
+.radio label {
+    position: relative;
+    display: block;
+}
+
+.radio label input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.radio label input[type="radio"] + span {
+    display: block;
+    color: yellowgreen;
+    border: 3px solid yellowgreen;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    background-color: green;
+  }
+
+  .radio label input[type="radio"]:checked + span {
+    background-color :#64dd17;
+    color: yellow;
+    border: solid yellow;
+    font-size: 1.2rem;
+    -webkit-text-stroke: 0.2px black;
+    font-weight: bold;
+  }
+
+  .dbtn {
+    display: inline-block;
+    padding: 0.8em 3em;
+    background-color: #ffd150;
+    box-shadow: 0 5px 0 #ffc41d;
+    border-radius: 60px;
+    color: #fff;
+  }
+
+  .dbtn:active {
+    box-shadow: none;
+    transform: translateY(5px);
+  }
+
+  .bg-green {
+    background-color: #1D4434;
+}
+
+.btn-circle {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+  }
+
+  .w-15 {
+    width: 15%;
+  }
+
+  #surrender {
+    background-color: red;
+    border-color: red;
+    color: white;
+  }
+
+  #stand {
+    background-color: blue;
+    border-color: blue;
+    color: white;
+  }
+
+  #hit {
+    background-color: #ffc41d;
+    border-color: #ffc41d;
+    color: white;
+  }
+
+  #double {
+    background-color: purple;
+    border-color: purple;
+    color: white;
+  }
