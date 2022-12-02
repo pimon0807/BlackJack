@@ -106,10 +106,9 @@ export class BlackJackTable {
                 }else if(this.house.status === "bust"){
                     if(player.status !== "bust"){
                         if(player.status === "blackjack"){
-                            player.chips = player.betAmount * 1.5 + player.chips
-                        }else{
-                            player.chips += player.betAmount;
+                            player.betAmount *= 1.5;
                         }
+                        player.chips += player.betAmount;
                         player.result = "Win";
                         this.resultLog.push(`${player.name} is win +${player.betAmount} chips. Total chips: ${player.chips}.`)
                     }else{
@@ -126,10 +125,9 @@ export class BlackJackTable {
                         this.resultLog.push(`${player.name} is lose -${player.betAmount} chips. Total chips: ${player.chips}.`)
                     }else{
                         if(player.status === "blackjack"){
-                            player.chips = player.betAmount * 1.5 + player.chips;
-                        }else{
-                            player.chips += player.betAmount;
+                            player.betAmount *= 1.5;
                         }
+                        player.chips += player.betAmount;
                         player.result = "Win";
                         this.resultLog.push(`${player.name} is win +${player.betAmount} chips. Total chips: ${player.chips}.`)
                     }
