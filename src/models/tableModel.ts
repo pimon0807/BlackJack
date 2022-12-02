@@ -83,6 +83,11 @@ export class BlackJackTable {
         //TODO: ここから挙動をコードしてください。
         for(let player of this.players){
             if(player.playerType === "house"){
+                if(player.getHandScore() > 21){
+                    player.status = "bust"
+                }else if(player.getHandScore() === 21){
+                    player.status = "blackjack";
+                }
                 continue;
             }else{
                 if(player.status === "surrender"){
