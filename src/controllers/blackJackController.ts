@@ -1,4 +1,3 @@
-import { BlackJackPlayer } from "../models/playerModel";
 import { BlackJackTable } from "../models/tableModel";
 import { View } from "../views/blackJackViews";
 import Modal from "bootstrap/js/dist/modal";
@@ -9,7 +8,7 @@ export class Controller {
         this.startBtn();
     }
 
-    startGame(name: string, gameType: string) {
+    startGame(name: string, gameType: string): void{
         if(gameType === "blackjack"){
             let table = new BlackJackTable(name);
             this.renderTable(table);
@@ -37,7 +36,7 @@ export class Controller {
         })
     }
 
-    renderTable(table: BlackJackTable) {
+    renderTable(table: BlackJackTable): void{
         if(table.gamePhase === "gameOver"){
             View.displayResult(table.players[1])
             View.createNewGameBtn(table.players[1].chips);
@@ -95,18 +94,18 @@ export class Controller {
         
     }
 
-    getBetAmount(table: BlackJackTable) {
+    getBetAmount(table: BlackJackTable): void{
         table.haveTurn(table.getTurnPlayer().betAmount);
         this.renderTable(table);
     }
 
-    betBtn(table: BlackJackTable) {
+    betBtn(table: BlackJackTable): void{
         let betBtn = document.getElementById("betbtn")?.addEventListener("click", () => {
             this.getBetAmount(table);
         })
     }
 
-    chipBtn(table: BlackJackTable) {
+    chipBtn(table: BlackJackTable): void{
         for(let chip of table.betDenominations){
             let chipBtn = document.getElementById(`${chip}`) as HTMLInputElement;
             chipBtn?.addEventListener("click", () => {
@@ -118,7 +117,7 @@ export class Controller {
         }
     }
 
-    resetBetBtn(table: BlackJackTable) {
+    resetBetBtn(table: BlackJackTable): void{
         let resetBetBtn = document.getElementById("resetbetbtn")?.addEventListener("click", () => {
             table.getTurnPlayer().betAmount = 0;
             document.querySelectorAll("#betamount")[0].innerHTML = `<h4>You Bet ${table.getTurnPlayer().betAmount}</h4>`;
@@ -131,7 +130,7 @@ export class Controller {
         })
     }
 
-    disabledBetBtn(table: BlackJackTable) {
+    disabledBetBtn(table: BlackJackTable):void {
         let betBtns = document.querySelector("#chips")?.querySelectorAll("button");
         for(let betBtn of betBtns!){
             let curr = betBtn as HTMLInputElement;
@@ -141,7 +140,7 @@ export class Controller {
         }
     }
 
-    actionBtn(table: BlackJackTable) {
+    actionBtn(table: BlackJackTable): void{
         for(let action of table.getTurnPlayer().actions){
             let actionBtn = document.getElementById(`${action}`);
             actionBtn?.addEventListener("click", () => {
@@ -151,14 +150,14 @@ export class Controller {
         }
     }
 
-    moveNextRoundBtn(table: BlackJackTable) {
+    moveNextRoundBtn(table: BlackJackTable): void{
         let moveNextRoundBtn = document.getElementById("Next")?.addEventListener("click", () => {
             table.blackjackClearPlayerHandsAndBets();
             this.renderTable(table);
         })
     }
 
-    moveInitialPageBtn() {
+    moveInitialPageBtn(): void{
         let moveInitialPageBtn = document.getElementById("New")?.addEventListener("click", () => {
             document.querySelectorAll("#root")[0].innerHTML = "";
             new Controller();

@@ -1,7 +1,3 @@
-import e from "express";
-import { BlackJackbetDenominations } from "../config/blackJackConfig";
-import { Controller } from "../controllers/blackJackController";
-import { BlackJackCard } from "../models/cardModel";
 import { BlackJackPlayer } from "../models/playerModel";
 import { BlackJackTable } from "../models/tableModel";
 
@@ -248,7 +244,6 @@ export class View {
         container.innerHTML = `
         <button id=${status} type="button" class="btn btn-primary ">${status}</button>
         `;
-
         return document.getElementById("playerArea")?.append(container);
     }
 
@@ -259,7 +254,6 @@ export class View {
 
         let surrenderBtn = document.getElementById("surrender") as HTMLInputElement;
         surrenderBtn.disabled = true;
-
     }
 
     static displayResult(player: BlackJackPlayer) {

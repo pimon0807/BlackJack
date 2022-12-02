@@ -1,6 +1,4 @@
-import e from "express";
 import { BlackJackActionType, BlackJackbetDenominations, BlackJackGamePhaseType, BlackJackStatusType} from "../config/blackJackConfig";
-import { View } from "../views/blackJackViews";
 import { BlackJackDeck } from "./deckModel";
 import { BlackJackPlayer, GameDecision } from "./playerModel";
 
@@ -34,7 +32,7 @@ export class BlackJackTable {
         this.players.push(new BlackJackPlayer("AI2", "ai"));
     }
 
-    evaluateMove(decision: GameDecision) {
+    evaluateMove(decision: GameDecision) :void{
         //TODO: ここから挙動をコードしてください。
         let player = this.getTurnPlayer()
 
@@ -81,7 +79,7 @@ export class BlackJackTable {
        return String : 新しいターンが始まる直前の全プレイヤーの状態を表す文字列。
         NOTE: このメソッドの出力は、各ラウンドの終了時にテーブルのresultsLogメンバを更新するために使用されます。
     */
-    blackjackEvaluateAndGetRoundResults() {
+    blackjackEvaluateAndGetRoundResults(): void{
         //TODO: ここから挙動をコードしてください。
         for(let player of this.players){
             if(player.playerType === "house"){
@@ -102,7 +100,11 @@ export class BlackJackTable {
                     }
                 }else if(this.house.status === "bust"){
                     if(player.status !== "bust"){
-                        player.chips += player.betAmount;
+                        if(player.status === "blackjack"){
+                            player.chips = player.betAmount * 1.5 + player.chips
+                        }else{
+                            player.chips += player.betAmount;
+                        }
                         player.result = "Win";
                         this.resultLog.push(`${player.name} is win +${player.betAmount} chips. Total chips: ${player.chips}.`)
                     }else{
@@ -115,7 +117,11 @@ export class BlackJackTable {
                         player.result = "Lose";
                         this.resultLog.push(`${player.name} is lose -${player.betAmount} chips. Total chips: ${player.chips}.`)
                     }else{
-                        player.chips += player.betAmount;
+                        if(player.status === "blackjack"){
+                            player.chips = player.betAmount * 1.5 + player.chips;
+                        }else{
+                            player.chips += player.betAmount;
+                        }
                         player.result = "Win";
                         this.resultLog.push(`${player.name} is win +${player.betAmount} chips. Total chips: ${player.chips}.`)
                     }
