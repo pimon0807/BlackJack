@@ -194,6 +194,7 @@ export class BlackJackTable {
         if(this.allPlayerActionsResolved()){
             this.gamePhase = "evaluatingWinners";
             this.blackjackEvaluateAndGetRoundResults();
+            return;
         }
 
         let currPlayer = this.getTurnPlayer();
