@@ -81,6 +81,7 @@ export class BlackJackTable {
     */
     blackjackEvaluateAndGetRoundResults(): void{
         //TODO: ここから挙動をコードしてください。
+        alert("fff")
         for(let player of this.players){
             if(player.playerType === "house"){
                 if(player.getHandScore() > 21){
