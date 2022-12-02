@@ -81,7 +81,6 @@ export class BlackJackTable {
     */
     blackjackEvaluateAndGetRoundResults(): void{
         //TODO: ここから挙動をコードしてください。
-        alert("fff")
         for(let player of this.players){
             if(player.playerType === "house"){
                 if(player.getHandScore() > 21){
@@ -118,7 +117,10 @@ export class BlackJackTable {
                         this.resultLog.push(`${player.name} is push. Total chips: ${player.chips}.`)
                     }
                 }else{
-                    if(this.house.getHandScore() > player.getHandScore() || player.status === "bust"){
+                    if(this.house.getHandScore() === player.getHandScore()){
+                        player.result = "Push";
+                        this.resultLog.push(`${player.name} is push. Total chips: ${player.chips}.`)
+                    }else if(this.house.getHandScore() > player.getHandScore() || player.status === "bust"){
                         player.chips -= player.betAmount;
                         player.result = "Lose";
                         this.resultLog.push(`${player.name} is lose -${player.betAmount} chips. Total chips: ${player.chips}.`)

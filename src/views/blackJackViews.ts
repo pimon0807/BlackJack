@@ -7,7 +7,7 @@ export class View {
         let container = document.createElement("div");
         container.classList.add("vh-100", "d-flex", "flex-column", "justify-content-center", "align-items-center", "bg-success", "text-center");
         container.innerHTML = `
-        <h1>BlackJack & Poker llllllllll</h1>
+        <h1>BlackJack & Poker</h1>
         <h3>Select Game and Input Your Name!</h3>
         <div class="col-4 mt-4">
                 <div class="radio">
